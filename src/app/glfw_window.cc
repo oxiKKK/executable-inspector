@@ -21,6 +21,11 @@ CGLFWWindow::CGLFWWindow(std::string_view title, Vector2D<int32_t> resolution)
 		return;
 	}
 
+	// GL 3.0 + GLSL 130
+	const std::string_view glsl_version = "#version 130";
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+
 	m_glfw_window = glfwCreateWindow(
 		m_resolution.x, m_resolution.y,
 		m_title.c_str(),
@@ -41,7 +46,7 @@ CGLFWWindow::CGLFWWindow(std::string_view title, Vector2D<int32_t> resolution)
 	glfwSwapInterval(1);
 
 	// create GUI sublayer
-	m_gui = std::make_unique<CGUI>(m_glfw_window);
+	m_gui = std::make_unique<CGUI>(m_glfw_window, glsl_version);
 	if (!m_gui)
 	{
 		return;

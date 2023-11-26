@@ -23,7 +23,6 @@
 #include <GLFW/glfw3.h>
 
 // imgui
-#include <public/imgui_config.h>
 #include <imgui/imgui.h>
 #include <imgui/backends/imgui_impl_glfw.h>
 #include <imgui/backends/imgui_impl_opengl3.h>

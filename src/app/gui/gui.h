@@ -14,7 +14,7 @@
 class CGUI
 {
 public:
-	CGUI(GLFWwindow* glfw_window);
+	CGUI(GLFWwindow* glfw_window, std::string_view glsl_version);
 	~CGUI();
 
 	CGUI() = delete;

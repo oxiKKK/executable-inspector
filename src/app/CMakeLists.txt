@@ -9,7 +9,7 @@ set(SOURCES
 add_executable(executable-inspector ${SOURCES})
 
 # in order to replace vanilla imconfig.h with our own
-target_compile_definitions(executable-inspector PRIVATE IMGUI_USER_CONFIG="${PUBLIC_PATH}/imgui_config.h")
+target_compile_definitions(executable-inspector PUBLIC IMGUI_USER_CONFIG="${PUBLIC_PATH}/imgui_config.h")
 
 # include directories
 target_include_directories(executable-inspector PRIVATE
