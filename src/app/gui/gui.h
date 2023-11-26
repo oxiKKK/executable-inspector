@@ -29,6 +29,9 @@ public:
 	}
 
 private:
+	void render_imgui();
+
+private:
 	GLFWwindow* m_glfw_window{};
 
 	bool m_success{};

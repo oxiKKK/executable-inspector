@@ -59,7 +59,9 @@ void CGUI::render()
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
 
-	// TODO: GUI code
+	//ImGui::ShowDemoWindow();
+
+	render_imgui();
 
 	// Rendering
 	ImGui::Render();
@@ -71,5 +73,39 @@ void CGUI::render()
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+}
+
+void CGUI::render_imgui()
+{
+	if (ImGui::BeginMainMenuBar())
+	{
+		if (ImGui::BeginMenu("Options"))
+		{
+			if (ImGui::MenuItem("Open")) {}
+			if (ImGui::MenuItem("Recent")) {}
+			if (ImGui::MenuItem("Close")) {}
+
+			ImGui::Separator();
+
+			if (ImGui::MenuItem("Exit")) {}
+
+			ImGui::EndMenu();
+		}
+
+		if (ImGui::BeginMenu("Help"))
+		{
+			if (ImGui::MenuItem("About")) {}
+
+			ImGui::EndMenu();
+		}
+		ImGui::EndMainMenuBar();
+	}
+
+	ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
+
+	ImGui::Begin("Stuff");
+	{
+		ImGui::End();
+	}
 }
 
