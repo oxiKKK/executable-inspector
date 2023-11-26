@@ -81,7 +81,11 @@ void CGUI::render_imgui()
 	{
 		if (ImGui::BeginMenu("Options"))
 		{
-			if (ImGui::MenuItem("Open")) {}
+			if (ImGui::MenuItem("Open"))
+			{
+				// open a file here via a dialog, blah, blah...
+			}
+
 			if (ImGui::MenuItem("Recent")) {}
 			if (ImGui::MenuItem("Close")) {}
 
@@ -92,12 +96,20 @@ void CGUI::render_imgui()
 			ImGui::EndMenu();
 		}
 
+		if (ImGui::BeginMenu("View"))
+		{
+			if (ImGui::MenuItem("List of file processors")) {}
+
+			ImGui::EndMenu();
+		}
+
 		if (ImGui::BeginMenu("Help"))
 		{
 			if (ImGui::MenuItem("About")) {}
 
 			ImGui::EndMenu();
 		}
+
 		ImGui::EndMainMenuBar();
 	}
 
