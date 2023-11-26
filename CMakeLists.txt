@@ -5,6 +5,10 @@ project(executable-inspector CXX C)
 find_package(OpenGL REQUIRED)
 include_directories(${OPENGL_INCLUDE_DIRS})
 
+# fmt
+find_package(fmt REQUIRED)
+link_libraries(fmt::fmt)
+
 include(cmake/DetectCompiler.cmake)
 
 # commonly used paths
@@ -61,16 +65,19 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${BINARY_PATH}) # static library
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BINARY_PATH}) # a dll
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BINARY_PATH}) # an exe
 
+
+include_directories(${SRC_PATH})
+
 # subdirectories
-add_subdirectory(src/thirdparty/glfw)
 add_subdirectory(src/app)
 #add_subdirectory(src/assets)
+add_subdirectory(src/thirdparty/glfw)
 add_subdirectory(src/thirdparty/imgui)
 add_subdirectory(src/thirdparty/soil)
 
 # install targets
-install(TARGETS glfw)
 install(TARGETS executable-inspector)
 #install(TARGETS assets)
+install(TARGETS glfw)
 install(TARGETS imgui)
 install(TARGETS soil)

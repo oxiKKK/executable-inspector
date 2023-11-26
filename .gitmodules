@@ -7,3 +7,6 @@
 [submodule "src/thirdparty/glfw"]
 	path = src/thirdparty/glfw
 	url = https://github.com/glfw/glfw
+[submodule "src/thirdparty/fmt"]
+	path = src/thirdparty/fmt
+	url = https://github.com/fmtlib/fmt

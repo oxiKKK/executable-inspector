@@ -1,5 +1,7 @@
 set(SOURCES
 	main.cc
+	application.cc
+	glfw_window.cc
 )
 
 # Create the target.
