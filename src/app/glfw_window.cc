@@ -40,6 +40,13 @@ CGLFWWindow::CGLFWWindow(std::string_view title, Vector2D<int32_t> resolution)
 	// Enable vsync
 	glfwSwapInterval(1);
 
+	// create GUI sublayer
+	m_gui = std::make_unique<CGUI>(m_glfw_window);
+	if (!m_gui)
+	{
+		return;
+	}
+
 	con::print("created GLFW window \"{}\", {}x{}", m_title, m_resolution.x, m_resolution.y);
 	m_success = true;
 }
@@ -59,7 +66,7 @@ void CGLFWWindow::update()
 {
 	glfwPollEvents();
 
-	// TODO: render imgui
+	m_gui->render();
 
 	glfwMakeContextCurrent(m_glfw_window);
 	glfwSwapBuffers(m_glfw_window);

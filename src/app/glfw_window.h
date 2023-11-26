@@ -37,6 +37,8 @@ private:
 	GLFWwindow* m_glfw_window{};
 
 	bool m_success{};
+
+	std::unique_ptr<CGUI> m_gui{};
 };
 
 #endif // GLFW_WINDOW_H

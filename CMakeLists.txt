@@ -14,9 +14,13 @@ include(cmake/DetectCompiler.cmake)
 # commonly used paths
 set(ROOT_PATH ${PROJECT_SOURCE_DIR})
 set(SRC_PATH ${ROOT_PATH}/src)
+set(PUBLIC_PATH ${ROOT_PATH}/src/public)
+set(THIRDPARY_PATH ${ROOT_PATH}/src/thirdparty)
 
 message("ROOT_PATH: ${ROOT_PATH}")
 message("SRC_PATH: ${SRC_PATH}")
+message("PUBLIC_PATH: ${PUBLIC_PATH}")
+message("THIRDPARY_PATH: ${THIRDPARY_PATH}")
 
 # https://stackoverflow.com/questions/16074598/set-installation-prefix-automatically-to-custom-path-if-not-explicitly-specified
 # HACKHACK: on linux this is defaulted to /usr/local, so cehck against that, too.

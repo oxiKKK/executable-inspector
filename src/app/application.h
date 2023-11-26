@@ -20,7 +20,7 @@ private:
 	bool on_frame();
 
 private:
-	std::unique_ptr<CGLFWWindow> m_window;
+	std::unique_ptr<CGLFWWindow> m_window{};
 
 	inline static constexpr int32_t k_frametime_ms = 1 / 60; // 60 fps
 };

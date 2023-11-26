@@ -39,4 +39,7 @@
 #include <chrono>
 using namespace std::chrono_literals;
 
+// our assert header
+#include "assert.h"
+
 #endif // PLATFORM_H

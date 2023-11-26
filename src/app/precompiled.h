@@ -15,14 +15,22 @@
 #include <memory>
 #include <thread>
 
-#include <GLFW/glfw3.h>
-
 // public
 #include <public/platform.h>
 #include <public/vector.h>
 
+// glfw
+#include <GLFW/glfw3.h>
+
+// imgui
+#include <public/imgui_config.h>
+#include <imgui/imgui.h>
+#include <imgui/backends/imgui_impl_glfw.h>
+#include <imgui/backends/imgui_impl_opengl3.h>
+
 // project
 #include "console.h"
+#include "gui/gui.h"
 #include "glfw_window.h"
 #include "application.h"
 
