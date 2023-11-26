@@ -1,4 +1,5 @@
 set(SOURCES
+	main.cc
 )
 
 # Create the target.
@@ -12,6 +13,8 @@ target_include_directories(executable-inspector PRIVATE
 
 # needed static libs
 target_link_libraries(executable-inspector PRIVATE
+	${OPENGL_LIBRARIES}
+	glfw
 	imgui
 	soil
 )

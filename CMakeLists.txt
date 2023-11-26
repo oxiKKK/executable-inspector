@@ -1,5 +1,9 @@
-cmake_minimum_required(VERSION 3.0.0)
-project(executable-inspector CXX)
+cmake_minimum_required(VERSION 3.27)
+project(executable-inspector CXX C)
+
+# opengl
+find_package(OpenGL REQUIRED)
+include_directories(${OPENGL_INCLUDE_DIRS})
 
 include(cmake/DetectCompiler.cmake)
 
@@ -58,13 +62,15 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BINARY_PATH}) # a dll
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BINARY_PATH}) # an exe
 
 # subdirectories
+add_subdirectory(src/thirdparty/glfw)
 add_subdirectory(src/app)
 #add_subdirectory(src/assets)
 add_subdirectory(src/thirdparty/imgui)
 add_subdirectory(src/thirdparty/soil)
 
 # install targets
-install(TARGETS app)
+install(TARGETS glfw)
+install(TARGETS executable-inspector)
 #install(TARGETS assets)
 install(TARGETS imgui)
 install(TARGETS soil)

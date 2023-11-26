@@ -17,3 +17,9 @@ target_include_directories(imgui PRIVATE
 	${SHARED_INCLUDES}
 	${CMAKE_CURRENT_SOURCE_DIR}/imgui
 )
+
+# NOTE: even tho this is a static lib, we need this for the includes
+target_link_libraries(imgui PRIVATE
+	${OPENGL_LIBRARIES}
+	glfw
+)
