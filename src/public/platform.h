@@ -36,6 +36,14 @@
 # define forceinline __attribute__((always_inline)) inline
 #endif
 
+// decl singleton for a class instance
+#define DECL_SINGLETON(name)			\
+	static forceinline name& the()		\
+	{									\
+		static name g_##name;			\
+		return g_##name;				\
+	}
+
 #include <chrono>
 using namespace std::chrono_literals;
 

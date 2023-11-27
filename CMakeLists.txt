@@ -60,8 +60,10 @@ add_compile_definitions($<$<CONFIG:Debug>:_DEBUG>)
 # select compiler
 if (IS_MSVC)
 	add_compile_definitions(COMPILER_MSVC)
+	add_compile_definitions(PLATFORM_WIN)
 elseif (IS_GCC)
 	add_compile_definitions(COMPILER_GCC)
+	add_compile_definitions(PLATFORM_LINUX)
 endif()
 
 # output directories

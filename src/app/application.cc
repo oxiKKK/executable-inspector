@@ -14,6 +14,29 @@ CApplication g_app{};
 
 int32_t CApplication::run()
 {
+	// create processor manager
+	m_processor_manager = std::make_unique<CProcessorManager>();
+	if (!m_processor_manager)
+	{
+		return 1;
+	}
+
+	if !(m_processor_manager->initialize())
+	{
+		return 1;
+	}
+
+	// create library loader
+#ifdef PLATFORM_WIN
+	m_library_loader = std::make_unique<ILibraryLoader>(new CLibraryLoaderWin32());
+#else
+	m_library_loader = std::make_unique<ILibraryLoader>(new CLibraryLoaderLinux());
+#endif
+	if (!m_library_loader)
+	{
+		return 1;
+	}
+
 	// create GLFW window
 	m_window = std::make_unique<CGLFWWindow>("Executable Inspector", Vector2D<int32_t>(1280, 720));
 	if (!m_window || !m_window->is_successfull())
