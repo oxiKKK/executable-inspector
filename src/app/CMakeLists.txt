@@ -2,6 +2,7 @@ set(SOURCES
 	main.cc
 	application.cc
 	glfw_window.cc
+	processor_manager.cc
 	gui/gui.cc
 )
 

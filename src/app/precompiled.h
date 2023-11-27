@@ -18,6 +18,8 @@
 // public
 #include <public/platform.h>
 #include <public/vector.h>
+#include <public/interface/file_processor_interface.h>
+#include <public/interface/processor_manager_interface.h>
 
 // glfw
 #include <GLFW/glfw3.h>
