@@ -127,10 +127,5 @@ void CGUI::render_imgui()
 	{
 		file_processor->render_gui();
 	}
-
-	ImGui::Begin("Stuff");
-	{
-		ImGui::End();
-	}
 }
 
