@@ -35,6 +35,8 @@ private:
 	GLFWwindow* m_glfw_window{};
 
 	bool m_success{};
+
+	std::vector<IFileProcessor*> m_processors{};
 };
 
 #endif // GUI_H

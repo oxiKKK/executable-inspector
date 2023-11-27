@@ -80,6 +80,7 @@ add_subdirectory(src/app)
 add_subdirectory(src/thirdparty/glfw)
 add_subdirectory(src/thirdparty/imgui)
 add_subdirectory(src/thirdparty/soil)
+add_subdirectory(src/processors/elf)
 
 # install targets
 install(TARGETS executable-inspector)
@@ -87,3 +88,4 @@ install(TARGETS executable-inspector)
 install(TARGETS glfw)
 install(TARGETS imgui)
 install(TARGETS soil)
+install(TARGETS elfprocessor)

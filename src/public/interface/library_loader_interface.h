@@ -14,8 +14,8 @@
 class ILibraryLoader
 {
 public:
-	virtual uintptr_t load_library(const std::string& name) = 0;
-	virtual uintptr_t locate_export(const std::string& library, const std::string& fn) = 0;
+	virtual uintptr_t load_library(const std::filesystem::path& library) = 0;
+	virtual uintptr_t locate_export(const std::filesystem::path& library, const std::string& fn) = 0;
 };
 
 #endif // LIBRARY_LOADER_INTERFACE_H

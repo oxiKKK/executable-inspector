@@ -36,6 +36,14 @@ CGUI::CGUI(GLFWwindow* glfw_window, std::string_view glsl_version)
 
 	con::print("initialized GUI");
 
+	// TODO: temporary
+	auto factory = g_app.processor_manager()->processor_factory("/home/ox/bin/executable-inspector");
+	if (factory)
+	{
+		factory->process_file("/home/ox/bin/executable-inspector");
+		m_processors.push_back(factory);
+	}
+
 	m_success = true;
 }
 
@@ -114,6 +122,11 @@ void CGUI::render_imgui()
 	}
 
 	ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
+
+	for (auto& file_processor : m_processors)
+	{
+		file_processor->render_gui();
+	}
 
 	ImGui::Begin("Stuff");
 	{

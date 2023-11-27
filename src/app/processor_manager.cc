@@ -15,14 +15,22 @@ bool CProcessorManager::initialize()
 	//
 	// create mappings
 	//
-	assign_processor_fo_filenames({ "dll", "exe" }, "libpeprocessor");
+	assign_processor_fo_filenames({ "dll", "exe" }, "peprocessor");
+	assign_processor_fo_filenames({ "so" }, "elfprocessor");
 
-	return false;
+	return true;
 }
 
 IFileProcessor* CProcessorManager::processor_factory(const std::filesystem::path& file)
 {
-	auto extension = file.extension();
+	if (!std::filesystem::exists(file))
+	{
+		con::error("input file {} does not exist.", file.string());
+		return nullptr;
+	}
+
+	// auto extension = file.extension();
+	std::filesystem::path extension = "so";
 
 	auto it = m_file_extension_to_processor_library.find(extension.string());
 	if (it == m_file_extension_to_processor_library.end())
@@ -30,15 +38,17 @@ IFileProcessor* CProcessorManager::processor_factory(const std::filesystem::path
 		return nullptr;
 	}
 
+	std::filesystem::path full_library_path = it->second.data() + extension.string();
+
 	// first load the appropriate library
-	uintptr_t library_base = g_app.library_loader()->load_library(it->second.data());
+	uintptr_t library_base = g_app.library_loader()->load_library(full_library_path);
 	if (!library_base)
 	{
 		return nullptr;
 	}
 
 	// now, locate the export
-	uintptr_t export_ptr = g_app.library_loader()->locate_export(it->second.data(), GET_PROCESSOR_FACTORY_EXPORT);
+	uintptr_t export_ptr = g_app.library_loader()->locate_export(full_library_path, GET_PROCESSOR_FACTORY_EXPORT);
 	if (!export_ptr)
 	{
 		return nullptr;
@@ -55,6 +65,10 @@ void CProcessorManager::assign_processor_fo_filenames(const std::vector<std::str
 {
 	for (auto& filename : filenames)
 	{
-		m_file_extension_to_processor_library[filename] = processor;
+		std::string processor_library_name = processor.data();
+#ifdef PLATFORM_LINUX
+		processor_library_name = "lib" + processor_library_name;
+#endif
+		m_file_extension_to_processor_library[filename] = processor_library_name;
 	}
 }
