@@ -11,6 +11,8 @@
 #define IMGUI_CONFIG_H
 #pragma once
 
+#include "assert.h"
+
 //---- Define assertion handler. Defaults to calling assert().
 #define IM_ASSERT(_EXPR) ASSERTION_MACRO(_EXPR)
 

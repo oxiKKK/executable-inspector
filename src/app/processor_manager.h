@@ -23,10 +23,13 @@ public:
 	virtual IFileProcessor* processor_factory(const std::filesystem::path& file);
 
 private:
-	void assign_processor_fo_filenames(const std::vector<std::string_view>& filenames, std::string_view processor);
+	// gets the processor library name that needs to be loaded in memory
+	std::string determine_processor_library_filename_by_file(const std::filesystem::path& file);
+
+	void assign_processor_fo_filenames(const std::vector<std::string>& extensions, const std::string& processor);
 
 private:
-	std::unordered_map<std::string_view, std::string_view> m_file_extension_to_processor_library;
+	std::unordered_map<std::string, std::string> m_file_extension_to_processor_library;
 };
 
 #endif // PROCESSOR_MANAGER_H

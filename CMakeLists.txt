@@ -22,12 +22,6 @@ message("SRC_PATH: ${SRC_PATH}")
 message("PUBLIC_PATH: ${PUBLIC_PATH}")
 message("THIRDPARY_PATH: ${THIRDPARY_PATH}")
 
-# https://stackoverflow.com/questions/16074598/set-installation-prefix-automatically-to-custom-path-if-not-explicitly-specified
-# HACKHACK: on linux this is defaulted to /usr/local, so cehck against that, too.
-if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT OR CMAKE_INSTALL_PREFIX STREQUAL "/usr/local")
-    set (CMAKE_INSTALL_PREFIX ${INSTALL_PATH} CACHE PATH "default install path" FORCE)
-endif()
-
 message("Install prefix: ${CMAKE_INSTALL_PREFIX}")
 
 # C++ standard
@@ -71,8 +65,22 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${BINARY_PATH}) # static library
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BINARY_PATH}) # a dll
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BINARY_PATH}) # an exe
 
+# global include directories
+include_directories(
+	${SRC_PATH}
+	${THIRDPARY_PATH}/imgui
+	${THIRDPARY_PATH}/imgui/imgui # this is needed for the backend files
+)
 
-include_directories(${SRC_PATH})
+# in order to replace vanilla imconfig.h with our own
+add_compile_definitions(PUBLIC IMGUI_USER_CONFIG="${PUBLIC_PATH}/imgui_config.h")
+
+set(INSTALL_PATH "${ROOT_PATH}/bin")
+
+# https://stackoverflow.com/questions/8880802/cmake-linking-shared-library
+set(CMAKE_INSTALL_RPATH ${INSTALL_PATH})
+
+message("CMAKE_INSTALL_RPATH: ${CMAKE_INSTALL_RPATH}")
 
 # subdirectories
 add_subdirectory(src/app)
@@ -83,9 +91,9 @@ add_subdirectory(src/thirdparty/soil)
 add_subdirectory(src/processors/elf)
 
 # install targets
-install(TARGETS executable-inspector)
-#install(TARGETS assets)
-install(TARGETS glfw)
-install(TARGETS imgui)
-install(TARGETS soil)
-install(TARGETS elfprocessor)
+install(TARGETS executable-inspector DESTINATION ${INSTALL_PATH})
+#install(TARGETS assets DESTINATION ${INSTALL_PATH})
+install(TARGETS glfw DESTINATION ${INSTALL_PATH})
+install(TARGETS imgui DESTINATION ${INSTALL_PATH})
+install(TARGETS soil DESTINATION ${INSTALL_PATH})
+install(TARGETS elfprocessor DESTINATION ${INSTALL_PATH})

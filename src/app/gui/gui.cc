@@ -37,10 +37,10 @@ CGUI::CGUI(GLFWwindow* glfw_window, std::string_view glsl_version)
 	con::print("initialized GUI");
 
 	// TODO: temporary
-	auto factory = g_app.processor_manager()->processor_factory("/home/ox/bin/executable-inspector");
+	auto factory = g_app.processor_manager()->processor_factory("/home/ox/Desktop/hw.so");
 	if (factory)
 	{
-		factory->process_file("/home/ox/bin/executable-inspector");
+		factory->process_file("/home/ox/Desktop/hw.so");
 		m_processors.push_back(factory);
 	}
 

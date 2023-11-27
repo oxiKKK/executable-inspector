@@ -18,6 +18,7 @@
 #else
 # include <cstdint>
 # include <dlfcn.h>
+# include <unistd.h>
 #endif
 
 // fmt library
@@ -50,5 +51,7 @@ using namespace std::chrono_literals;
 
 // our assert header
 #include "assert.h"
+
+#include "custom_format.h"
 
 #endif // PLATFORM_H

@@ -11,6 +11,8 @@
 #define ASSERT_H
 #pragma once
 
+#include <cassert>
+
 // distinguish assert macro
 #ifdef COMPILER_MSVC
 # define ASSERTION_MACRO _ASSERTE

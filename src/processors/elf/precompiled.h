@@ -23,6 +23,14 @@
 #include <public/interface/processor_manager_interface.h>
 #include <public/interface/library_loader_interface.h>
 
+// glfw
+#include <GLFW/glfw3.h>
+
+// imgui
+#include <imgui/imgui.h>
+#include <imgui/backends/imgui_impl_glfw.h>
+#include <imgui/backends/imgui_impl_opengl3.h>
+
 // project
 #include "elf_processor.h"
 

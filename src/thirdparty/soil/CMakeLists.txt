@@ -6,7 +6,7 @@ set(SOURCES
 )
 
 # Create the target.
-add_library(soil STATIC ${SOURCES})
+add_library(soil SHARED ${SOURCES})
 
 # include directories
 target_include_directories(soil PRIVATE

@@ -25,20 +25,24 @@ IFileProcessor* CProcessorManager::processor_factory(const std::filesystem::path
 {
 	if (!std::filesystem::exists(file))
 	{
-		con::error("input file {} does not exist.", file.string());
+		con::error("input file {} does not exist.", file);
 		return nullptr;
 	}
 
-	// auto extension = file.extension();
-	std::filesystem::path extension = "so";
-
-	auto it = m_file_extension_to_processor_library.find(extension.string());
-	if (it == m_file_extension_to_processor_library.end())
+	std::string processor_lib = determine_processor_library_filename_by_file(file);
+	if (processor_lib.empty())
 	{
+		con::error("unsupported file type for file {}.", file);
 		return nullptr;
 	}
 
-	std::filesystem::path full_library_path = it->second.data() + extension.string();
+	std::filesystem::path full_library_path = processor_lib;
+#ifdef PLATFORM_WIN
+	full_library_path.replace_extension(".dll");
+#else
+	full_library_path = "./" + full_library_path.string();
+	full_library_path.replace_extension(".so");
+#endif
 
 	// first load the appropriate library
 	uintptr_t library_base = g_app.library_loader()->load_library(full_library_path);
@@ -48,7 +52,7 @@ IFileProcessor* CProcessorManager::processor_factory(const std::filesystem::path
 	}
 
 	// now, locate the export
-	uintptr_t export_ptr = g_app.library_loader()->locate_export(full_library_path, GET_PROCESSOR_FACTORY_EXPORT);
+	uintptr_t export_ptr = g_app.library_loader()->locate_export((void*)library_base, GET_PROCESSOR_FACTORY_EXPORT);
 	if (!export_ptr)
 	{
 		return nullptr;
@@ -61,14 +65,35 @@ IFileProcessor* CProcessorManager::processor_factory(const std::filesystem::path
 	return reinterpret_cast<IFileProcessor*>(result);
 }
 
-void CProcessorManager::assign_processor_fo_filenames(const std::vector<std::string_view>& filenames, std::string_view processor)
+std::string CProcessorManager::determine_processor_library_filename_by_file(const std::filesystem::path& file)
 {
-	for (auto& filename : filenames)
+	if (!file.has_extension())
 	{
-		std::string processor_library_name = processor.data();
+		con::error("couldn't decide on file type because the file {} has no extension.", file);
+		// TODO: this should be fixed in the future
+		return "";
+	}
+
+	auto extension = file.extension();
+
+	auto it = m_file_extension_to_processor_library.find(extension.string());
+	if (it == m_file_extension_to_processor_library.end())
+	{
+		return "";
+	}
+
+	return it->second;
+}
+
+void CProcessorManager::assign_processor_fo_filenames(const std::vector<std::string>& extensions, const std::string& processor)
+{
+	for (auto& ext : extensions)
+	{
+		std::string processor_library_name = processor;
 #ifdef PLATFORM_LINUX
+		// on linux, our dynamic libraries are prefixed with "lib"
 		processor_library_name = "lib" + processor_library_name;
 #endif
-		m_file_extension_to_processor_library[filename] = processor_library_name;
+		m_file_extension_to_processor_library["." + ext] = processor_library_name;
 	}
 }

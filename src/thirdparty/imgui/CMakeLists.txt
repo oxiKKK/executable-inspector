@@ -11,7 +11,7 @@ set(SOURCES
 )
 
 # Create the target.
-add_library(imgui STATIC ${SOURCES})
+add_library(imgui SHARED ${SOURCES})
 
 # include directories
 target_include_directories(imgui PRIVATE
@@ -19,7 +19,7 @@ target_include_directories(imgui PRIVATE
 	${CMAKE_CURRENT_SOURCE_DIR}/imgui
 )
 
-# NOTE: even tho this is a static lib, we need this for the includes
+# NOTE: we need this for the includes
 target_link_libraries(imgui PRIVATE
 	${OPENGL_LIBRARIES}
 	glfw

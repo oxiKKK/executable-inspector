@@ -8,9 +8,9 @@
       "name": "Run (Linux)",
       "request": "launch",
       "type": "cppdbg",
-      "program": "${userHome}/bin/executable-inspector",
+      "program": "${workspaceFolder}/bin/executable-inspector",
       "args": [],
-      "cwd": "${workspaceFolder}",
+      "cwd": "${workspaceFolder}/bin",
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",

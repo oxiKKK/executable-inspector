@@ -12,7 +12,7 @@
 
 CElfProcessor g_processor;
 
-__attribute__((visibility("default"))) void* get_processor_factory()
+extern "C" __attribute__((visibility("default"))) void* get_processor_factory()
 {
 	return reinterpret_cast<void*>(&g_processor);
 }
@@ -24,4 +24,7 @@ bool CElfProcessor::process_file(const std::filesystem::path& filepath)
 
 void CElfProcessor::render_gui()
 {
+	ImGui::Begin("Hello window");
+	ImGui::Text("Hello world");
+	ImGui::End();
 }

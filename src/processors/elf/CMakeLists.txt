@@ -11,6 +11,14 @@ target_include_directories(elfprocessor PRIVATE
 	${CMAKE_CURRENT_SOURCE_DIR}
 )
 
+# needed static libs
+target_link_libraries(elfprocessor PRIVATE
+	${OPENGL_LIBRARIES}
+	glfw
+	imgui
+	soil
+)
+
 target_precompile_headers(elfprocessor PRIVATE
 	precompiled.h
 )
