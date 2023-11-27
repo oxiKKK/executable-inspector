@@ -18,14 +18,15 @@ public:
 
 	// getters
 	forceinline auto library_loader() { return m_library_loader.get(); }
+	forceinline auto processor_manager() { return m_processor_manager.get(); }
 
 private:
 	bool on_frame();
 
 private:
-	std::unique_ptr<CGLFWWindow> m_window{};
-	std::unique_ptr<IProcessorManager> m_processor_manager{};
-	std::unique_ptr<ILibraryLoader> m_library_loader{};
+	std::unique_ptr<CGLFWWindow> m_window{ nullptr };
+	std::unique_ptr<IProcessorManager> m_processor_manager{ nullptr };
+	std::unique_ptr<ILibraryLoader> m_library_loader{ nullptr };
 
 	inline static constexpr int32_t k_frametime_ms = 1 / 60; // 60 fps
 };

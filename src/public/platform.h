@@ -17,6 +17,7 @@
 # include <Windows.h>
 #else
 # include <cstdint>
+# include <dlfcn.h>
 #endif
 
 // fmt library

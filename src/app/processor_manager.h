@@ -11,12 +11,16 @@
 #define PROCESSOR_MANAGER_H
 #pragma once
 
-class CProcessorManager : IProcessorManager
+// exported fn
+#define GET_PROCESSOR_FACTORY_EXPORT "get_processor_factory"
+typedef void* (*pfn_get_processor_factory)();
+
+class CProcessorManager : public IProcessorManager
 {
 public:
-	bool initialize();
+	virtual bool initialize();
 
-	std::optional<std::unique_ptr<IFileProcessor>> processor_factory(const std::filesystem::path& file);
+	virtual IFileProcessor* processor_factory(const std::filesystem::path& file);
 
 private:
 	void assign_processor_fo_filenames(const std::vector<std::string_view>& filenames, std::string_view processor);

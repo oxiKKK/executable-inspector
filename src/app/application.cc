@@ -8,7 +8,6 @@
 ****/
 
 #include "precompiled.h"
-#include "application.h"
 
 CApplication g_app{};
 
@@ -21,16 +20,16 @@ int32_t CApplication::run()
 		return 1;
 	}
 
-	if !(m_processor_manager->initialize())
+	if (!m_processor_manager->initialize())
 	{
 		return 1;
 	}
 
 	// create library loader
 #ifdef PLATFORM_WIN
-	m_library_loader = std::make_unique<ILibraryLoader>(new CLibraryLoaderWin32());
+	m_library_loader = std::make_unique<CLibraryLoaderWin32>();
 #else
-	m_library_loader = std::make_unique<ILibraryLoader>(new CLibraryLoaderLinux());
+	m_library_loader = std::make_unique<CLibraryLoaderLinux>();
 #endif
 	if (!m_library_loader)
 	{

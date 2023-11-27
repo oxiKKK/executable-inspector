@@ -18,7 +18,7 @@ class IProcessorManager
 public:
 	virtual bool initialize() = 0;
 
-	virtual std::optional<std::unique_ptr<IFileProcessor>> processor_factory(const std::filesystem::path& file) = 0;
+	virtual IFileProcessor* processor_factory(const std::filesystem::path& file) = 0;
 };
 
 #endif // PROCESSOR_MANAGER_INTERFACE_H

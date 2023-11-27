@@ -32,8 +32,8 @@
 #include <imgui/backends/imgui_impl_opengl3.h>
 
 // library loaders
-#include "library_loader_linux.h"
-#include "library_loader_win32.h"
+#include "library_loader/library_loader_linux.h"
+#include "library_loader/library_loader_win32.h"
 
 // project
 #include "processor_manager.h"

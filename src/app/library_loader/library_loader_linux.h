@@ -7,15 +7,15 @@
 *	included in project root directory.
 ****/
 
-#ifndef LIBRARY_LOADER_WIN32_H
-#define LIBRARY_LOADER_WIN32_H
+#ifndef LIBRARY_LOADER_LINUX_H
+#define LIBRARY_LOADER_LINUX_H
 #pragma once
 
-class CLibraryLoaderWin32 : ILibraryLoader
+class CLibraryLoaderLinux : public ILibraryLoader
 {
 public:
 	uintptr_t load_library(const std::string& name);
 	uintptr_t locate_export(const std::string& library, const std::string& fn);
 };
 
-#endif // LIBRARY_LOADER_WIN32_H
+#endif // LIBRARY_LOADER_LINUX_H
