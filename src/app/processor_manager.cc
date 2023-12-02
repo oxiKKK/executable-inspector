@@ -35,7 +35,22 @@ bool CProcessorManager::process_file(const std::filesystem::path& file)
 		return false;
 	}
 
-	bool processed_successfully = it->second->m_processor->process_file(file);
+	auto& result_ref = it->second;
+
+	con::print("processing file \"{}\"", file);
+
+	auto start = std::chrono::high_resolution_clock::now();
+	bool processed_successfully = result_ref->m_processor->process_file(file);
+	auto end = std::chrono::high_resolution_clock::now();
+
+	if (!processed_successfully)
+	{
+		con::error("failed to process the file!");
+	}
+
+	result_ref->m_processing_time = end - start;
+	con::print("processing took {}", result_ref->m_processing_time);
+
 	return processed_successfully;
 }
 
