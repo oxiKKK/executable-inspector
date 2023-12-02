@@ -7,6 +7,12 @@ include_directories(${OPENGL_INCLUDE_DIRS})
 
 include(cmake/DetectCompiler.cmake)
 
+if (IS_GCC)
+	# sorry... what? xd
+	# https://stackoverflow.com/questions/38296756/what-is-the-idiomatic-way-in-cmake-to-add-the-fpic-compiler-option
+	set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+endif()
+
 # commonly used paths
 set(ROOT_PATH ${PROJECT_SOURCE_DIR})
 set(SRC_PATH ${ROOT_PATH}/src)
@@ -87,6 +93,7 @@ include(cmake/thirdparty/imgui.cmake)
 # subdirectories
 add_subdirectory(src/app)
 #add_subdirectory(src/assets)
+add_subdirectory(src/processors/utils)
 add_subdirectory(src/processors/elf)
 add_subdirectory(src/processors/PE)
 
