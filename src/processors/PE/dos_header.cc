@@ -70,12 +70,12 @@ bool CPEProcessor::process_dos_signature()
 	// validate elfanew
 	if (!m_data.dos_hdr.dos_header_size || m_data.dos_hdr.dos_header_size < sizeof(IMAGE_DOS_HEADER))
 	{
-		con::error("invalid PE header offset: {}", m_data.dos_hdr.dos_header_size);
+		con::error("invalid PE header offset: {}", m_data.dos_hdr.dos_header_size.string());
 		return false;
 	}
 
 	con::print("number_of_pages: {}", m_data.dos_hdr.number_of_pages);
-	con::print("dos_header_size: {}", m_data.dos_hdr.dos_header_size);
+	con::print("dos_header_size: {}", m_data.dos_hdr.dos_header_size.string());
 	con::print("checksum:        {:04X}", m_data.dos_hdr.checksum);
 
 	return true;

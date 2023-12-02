@@ -14,7 +14,7 @@
 struct dos_hdr_t
 {
 	uint16_t number_of_pages{};
-	uint16_t dos_header_size{};		// size of DOS header including the stub
+	PrettyHexValue<uint16_t> dos_header_size{}; // size of DOS header including the stub
 	uint16_t checksum{};
 };
 

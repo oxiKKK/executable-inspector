@@ -24,6 +24,7 @@
 #include <public/interface/library_loader_interface.h>
 #include <public/bytebuffer.h>
 #include <public/aliased_value.h>
+#include <public/pretty_value.h>
 #include <public/processors/processed_file_reader.h>
 
 // glfw
