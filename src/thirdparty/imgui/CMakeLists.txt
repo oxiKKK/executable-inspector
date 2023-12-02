@@ -11,7 +11,7 @@ set(SOURCES
 )
 
 # Create the target.
-add_library(imgui SHARED ${SOURCES})
+add_library(imgui STATIC  ${SOURCES})
 
 # include directories
 target_include_directories(imgui PRIVATE

@@ -12,7 +12,7 @@
 
 CElfProcessor g_processor;
 
-extern "C" __attribute__((visibility("default"))) void* get_processor_factory()
+extern "C" EXPORT void* get_processor_factory()
 {
 	return reinterpret_cast<void*>(&g_processor);
 }

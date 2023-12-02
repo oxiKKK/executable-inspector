@@ -9,13 +9,6 @@
 
 #include "precompiled.h"
 
-class CLibraryLoaderWin32 : ILibraryLoader
-{
-public:
-	uintptr_t load_library(const std::filesystem::path& library);
-	uintptr_t locate_export(void* handle, const std::string& fn);
-};
-
 // TODO: implement
 
 uintptr_t CLibraryLoaderWin32::load_library(const std::filesystem::path& library)

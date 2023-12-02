@@ -38,6 +38,14 @@
 # define forceinline __attribute__((always_inline)) inline
 #endif
 
+#ifdef COMPILER_MSVC
+#define EXPORT __declspec(dllexport)
+#define IMPORT __declspec(dllimport)
+#else
+#define EXPORT 
+#define IMPORT 
+#endif
+
 // decl singleton for a class instance
 #define DECL_SINGLETON(name)			\
 	static forceinline name& the()		\

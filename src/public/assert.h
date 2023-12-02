@@ -15,6 +15,7 @@
 
 // distinguish assert macro
 #ifdef COMPILER_MSVC
+#include <crtdbg.h> // required by _ASSERTE
 # define ASSERTION_MACRO _ASSERTE
 #else
 # define ASSERTION_MACRO assert

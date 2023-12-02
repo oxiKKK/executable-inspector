@@ -11,12 +11,12 @@ include(cmake/DetectCompiler.cmake)
 set(ROOT_PATH ${PROJECT_SOURCE_DIR})
 set(SRC_PATH ${ROOT_PATH}/src)
 set(PUBLIC_PATH ${ROOT_PATH}/src/public)
-set(THIRDPARY_PATH ${ROOT_PATH}/src/thirdparty)
+set(THIRDPARTY_PATH ${ROOT_PATH}/src/thirdparty)
 
 message("ROOT_PATH: ${ROOT_PATH}")
 message("SRC_PATH: ${SRC_PATH}")
 message("PUBLIC_PATH: ${PUBLIC_PATH}")
-message("THIRDPARY_PATH: ${THIRDPARY_PATH}")
+message("THIRDPARTY_PATH: ${THIRDPARTY_PATH}")
 
 message("Install prefix: ${CMAKE_INSTALL_PREFIX}")
 
@@ -64,8 +64,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BINARY_PATH}) # an exe
 # global include directories
 include_directories(
 	${SRC_PATH}
-	${THIRDPARY_PATH}/imgui
-	${THIRDPARY_PATH}/imgui/imgui # this is needed for the backend files
+	${THIRDPARTY_PATH}/imgui
+	${THIRDPARTY_PATH}/imgui/imgui # this is needed for the backend files
 )
 
 # in order to replace vanilla imconfig.h with our own
@@ -78,19 +78,18 @@ set(CMAKE_INSTALL_RPATH ${INSTALL_PATH})
 
 message("CMAKE_INSTALL_RPATH: ${CMAKE_INSTALL_RPATH}")
 
+# thirdparty dependencies
+include(cmake/thirdparty/fmt.cmake)
+include(cmake/thirdparty/glfw.cmake)
+include(cmake/thirdparty/soil.cmake)
+include(cmake/thirdparty/imgui.cmake)
+
 # subdirectories
 add_subdirectory(src/app)
 #add_subdirectory(src/assets)
-add_subdirectory(src/thirdparty/glfw)
-add_subdirectory(src/thirdparty/imgui)
-add_subdirectory(src/thirdparty/soil)
-add_subdirectory(src/thirdparty/fmt)
 add_subdirectory(src/processors/elf)
 
 # install targets
 install(TARGETS executable-inspector DESTINATION ${INSTALL_PATH})
 #install(TARGETS assets DESTINATION ${INSTALL_PATH})
-install(TARGETS glfw DESTINATION ${INSTALL_PATH})
-install(TARGETS imgui DESTINATION ${INSTALL_PATH})
-install(TARGETS soil DESTINATION ${INSTALL_PATH})
 install(TARGETS elfprocessor DESTINATION ${INSTALL_PATH})
