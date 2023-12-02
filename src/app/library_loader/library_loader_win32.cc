@@ -16,7 +16,7 @@ uintptr_t CLibraryLoaderWin32::load_library(const std::filesystem::path& library
 	return uintptr_t();
 }
 
-uintptr_t CLibraryLoaderWin32::locate_export(const std::string& library, const std::string& fn)
+uintptr_t CLibraryLoaderWin32::locate_export(void* handle, const std::string& fn)
 {
 	return uintptr_t();
 }

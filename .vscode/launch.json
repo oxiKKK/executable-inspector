@@ -18,6 +18,21 @@
           "ignoreFailures": true
         }
       ]
+    },
+    {
+      "name": "Run (Windows)",
+      "request": "launch",
+      "type": "cppdbg",
+      "program": "${workspaceFolder}/bin/executable-inspector.exe",
+      "args": [],
+      "cwd": "${workspaceFolder}/bin",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
     }
   ]
 }

@@ -33,7 +33,7 @@
 #endif
 
 #ifdef COMPILER_MSVC
-# define forceinline __forceinline inline
+# define forceinline __forceinline
 #else
 # define forceinline __attribute__((always_inline)) inline
 #endif
