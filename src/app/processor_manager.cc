@@ -21,6 +21,33 @@ bool CProcessorManager::initialize()
 	return true;
 }
 
+bool CProcessorManager::process_file(const std::filesystem::path& file)
+{
+	auto factory = processor_factory(file);
+	if (!factory)
+	{
+		return false;
+	}
+
+	auto [it, success] = m_processors.insert({ file, factory });
+	if (!success)
+	{
+		con::error("could not create new processor for file {}", file);
+		return false;
+	}
+
+	bool processed_successfully = it->second->process_file(file);
+	return processed_successfully;
+}
+
+void CProcessorManager::render_processors()
+{
+	for (auto& [path, file_processor] : m_processors)
+	{
+		file_processor->render_gui();
+	}
+}
+
 IFileProcessor* CProcessorManager::processor_factory(const std::filesystem::path& file)
 {
 	if (!std::filesystem::exists(file))

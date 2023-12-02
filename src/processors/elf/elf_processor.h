@@ -14,7 +14,9 @@
 class CElfProcessor : public IFileProcessor
 {
 public:
-	virtual bool process_file(const std::filesystem::path& filepath);
+	virtual const char* processor_name() { return "elf processor"; }
+
+	virtual bool process_file(const std::filesystem::path& filepath, EProcessOptions options = PROCESS_NONE);
 
 	virtual void render_gui();
 };

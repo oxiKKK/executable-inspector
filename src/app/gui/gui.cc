@@ -37,11 +37,9 @@ CGUI::CGUI(GLFWwindow* glfw_window, std::string_view glsl_version)
 	con::print("initialized GUI");
 
 	// TODO: temporary
-	auto factory = g_app.processor_manager()->processor_factory("/home/ox/Desktop/hw.so");
-	if (factory)
+	if (!g_app.processor_manager()->process_file("/home/ox/Desktop/kernel32.dll"))
 	{
-		factory->process_file("/home/ox/Desktop/hw.so");
-		m_processors.push_back(factory);
+		return;
 	}
 
 	m_success = true;
@@ -123,9 +121,6 @@ void CGUI::render_imgui()
 
 	ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
 
-	for (auto& file_processor : m_processors)
-	{
-		file_processor->render_gui();
-	}
+	g_app.processor_manager()->render_processors();
 }
 

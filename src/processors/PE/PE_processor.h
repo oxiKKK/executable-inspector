@@ -11,10 +11,16 @@
 #define PE_PROCESSOR_H
 #pragma once
 
-class CPEProcessor : IFileProcessor
+class CPEProcessor : public IFileProcessor
 {
 public:
+	virtual const char* processor_name() { return "PE processor"; }
 
+	virtual bool process_file(const std::filesystem::path& filepath, EProcessOptions options = PROCESS_NONE);
+
+	virtual void render_gui();
 };
+
+extern CPEProcessor g_processor;
 
 #endif // PE_PROCESSOR_H

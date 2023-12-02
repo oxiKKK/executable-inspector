@@ -17,7 +17,7 @@ extern "C" EXPORT void* get_processor_factory()
 	return reinterpret_cast<void*>(&g_processor);
 }
 
-bool CElfProcessor::process_file(const std::filesystem::path& filepath)
+bool CElfProcessor::process_file(const std::filesystem::path& filepath, EProcessOptions options)
 {
 	return false;
 }

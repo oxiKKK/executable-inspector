@@ -88,8 +88,10 @@ include(cmake/thirdparty/imgui.cmake)
 add_subdirectory(src/app)
 #add_subdirectory(src/assets)
 add_subdirectory(src/processors/elf)
+add_subdirectory(src/processors/PE)
 
 # install targets
 install(TARGETS executable-inspector DESTINATION ${INSTALL_PATH})
 #install(TARGETS assets DESTINATION ${INSTALL_PATH})
 install(TARGETS elfprocessor DESTINATION ${INSTALL_PATH})
+install(TARGETS peprocessor DESTINATION ${INSTALL_PATH})

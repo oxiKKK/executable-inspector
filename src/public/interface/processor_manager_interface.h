@@ -18,7 +18,9 @@ class IProcessorManager
 public:
 	virtual bool initialize() = 0;
 
-	virtual IFileProcessor* processor_factory(const std::filesystem::path& file) = 0;
+	virtual bool process_file(const std::filesystem::path& file) = 0;
+
+	virtual void render_processors() = 0;
 };
 
 #endif // PROCESSOR_MANAGER_INTERFACE_H

@@ -13,12 +13,20 @@
 
 #include <filesystem>
 
+enum EProcessOptions
+{
+	PROCESS_NONE = 0,
+	PROCESS_BENCHMARK = 0x1,
+};
+
 class IFileProcessor
 {
 public:
 	~IFileProcessor() {}
 
-	virtual bool process_file(const std::filesystem::path& filepath) = 0;
+	virtual const char* processor_name() = 0;
+
+	virtual bool process_file(const std::filesystem::path& filepath, EProcessOptions options = PROCESS_NONE) = 0;
 
 	virtual void render_gui() = 0;
 };
