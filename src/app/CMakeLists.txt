@@ -3,6 +3,7 @@ set(SOURCES
 	application.cc
 	glfw_window.cc
 	processor_manager.cc
+	process_result.cc
 	gui/gui.cc
 )
 

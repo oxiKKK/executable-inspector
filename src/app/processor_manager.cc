@@ -8,7 +8,6 @@
 ****/
 
 #include "precompiled.h"
-#include "processor_manager.h"
 
 bool CProcessorManager::initialize()
 {
@@ -29,22 +28,22 @@ bool CProcessorManager::process_file(const std::filesystem::path& file)
 		return false;
 	}
 
-	auto [it, success] = m_processors.insert({ file, factory });
+	auto [it, success] = m_processed_files.insert({ file, std::make_unique<ProcessResult>(factory) });
 	if (!success)
 	{
 		con::error("could not create new processor for file {}", file);
 		return false;
 	}
 
-	bool processed_successfully = it->second->process_file(file);
+	bool processed_successfully = it->second->m_processor->process_file(file);
 	return processed_successfully;
 }
 
 void CProcessorManager::render_processors()
 {
-	for (auto& [path, file_processor] : m_processors)
+	for (auto& [path, processed_file] : m_processed_files)
 	{
-		file_processor->render_gui();
+		processed_file->m_processor->render_gui();
 	}
 }
 

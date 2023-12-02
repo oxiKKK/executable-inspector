@@ -11,6 +11,8 @@
 #define PROCESSOR_MANAGER_H
 #pragma once
 
+#include "process_result.h"
+
 // exported fn
 #define GET_PROCESSOR_FACTORY_EXPORT "get_processor_factory"
 typedef void* (*pfn_get_processor_factory)();
@@ -35,7 +37,7 @@ private:
 private:
 	std::unordered_map<std::string, std::string> m_file_extension_to_processor_library;
 
-	std::unordered_map<std::filesystem::path, IFileProcessor*> m_processors{};
+	std::unordered_map<std::filesystem::path, std::unique_ptr<ProcessResult>> m_processed_files{};
 };
 
 #endif // PROCESSOR_MANAGER_H
