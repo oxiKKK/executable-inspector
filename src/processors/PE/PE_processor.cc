@@ -31,7 +31,19 @@ bool CPEProcessor::process_file(const std::filesystem::path& filepath, EProcessO
 
 void CPEProcessor::render_gui()
 {
+	ImGui::SetNextWindowSize({ 700, 700 }, ImGuiCond_FirstUseEver);
 	ImGui::Begin("PE processor");
-	ImGui::Text("Hello world");
+
+	if (ImGui::BeginTable("dos", 2, ImGuiTableFlags_None))
+	{
+		ImGui::TableSetupColumn("dos_0");
+		ImGui::TableSetupColumn("dos_1");
+
+		ImGui::TableNextColumn(); ImGui::TextWrapped("Magic");
+		ImGui::TableNextColumn(); ImGui::TextWrapped(m_data.file_magic.name().c_str());
+
+		ImGui::EndTable();
+	}
+
 	ImGui::End();
 }
