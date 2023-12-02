@@ -76,7 +76,8 @@
     "execution": "cpp",
     "cinttypes": "cpp",
     "complex": "cpp",
-    "typeindex": "cpp"
+    "typeindex": "cpp",
+    "cassert": "cpp"
   },
   "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
   "C_Cpp.default.compilerPath": "/usr/bin/g++",

@@ -23,21 +23,23 @@ public:
 	ProcessedFileReader(const ProcessedFileReader&) = default;
 	ProcessedFileReader(ProcessedFileReader&&) = default;
 
-	forceinline bool successfull()
+	forceinline bool successful()
 	{
 		return m_success;
 	}
 
 	forceinline auto filesize()
 	{
-		return m_filesize;
+		return m_input_filesize;
 	}
 
 private:
 	bool m_success{ false };
-	uintmax_t m_filesize{};
 
+	uintmax_t m_input_filesize{};
 	std::filesystem::path m_input_filepath{};
+
+	ByteBuffer<uintptr_t> m_file_buffer{};
 };
 
 #endif // PROCESSED_FILE_READER_H

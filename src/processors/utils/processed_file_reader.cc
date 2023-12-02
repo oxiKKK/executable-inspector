@@ -29,10 +29,21 @@ ProcessedFileReader::ProcessedFileReader(const std::filesystem::path& filepath) 
 		return;
 	}
 
+	m_input_filesize = std::filesystem::file_size(m_input_filepath);
+	if (!m_input_filesize)
+	{
+		con::error("ProcessedFileReader: file size is null!");
+		return;
+	}
+
+	// create byte buffer
+	m_file_buffer.create(m_input_filepath, m_input_filesize);
+
 	m_success = true;
 }
 
 ProcessedFileReader::~ProcessedFileReader()
 {
+	m_file_buffer.destroy();
 }
 

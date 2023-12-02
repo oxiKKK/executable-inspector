@@ -21,6 +21,7 @@
 #include <public/vector.h>
 #include <public/console.h>
 #include <public/processors/utils.h>
+#include <public/bytebuffer.h>
 #include <public/processors/processed_file_reader.h>
 
 #endif // PRECOMPILED_H
