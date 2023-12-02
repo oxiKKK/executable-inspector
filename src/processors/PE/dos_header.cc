@@ -78,6 +78,12 @@ bool CPEProcessor::process_dos_signature()
 	con::print("dos_header_size: {}", m_data.dos_hdr.dos_header_size.string());
 	con::print("checksum:        {:04X}", m_data.dos_hdr.checksum);
 
+	// dos stub
+	uintptr_t dos_stub_size = m_data.dos_hdr.dos_header_size - sizeof(IMAGE_DOS_HEADER);
+	con::print("sizeof DOS stub: {} bytes", dos_stub_size);
+
+	m_data.dos_hdr.dos_stub.create(m_reader->raw() + sizeof(IMAGE_DOS_HEADER), dos_stub_size);
+
 	return true;
 }
 
