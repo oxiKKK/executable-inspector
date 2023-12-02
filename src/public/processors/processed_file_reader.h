@@ -33,6 +33,11 @@ public:
 		return m_input_filesize;
 	}
 
+	// delegate api to byte buffer
+	forceinline auto raw() const { return m_file_buffer.get_raw(); }
+	template<class T>
+	forceinline T* at(uintptr_t off) const { return m_file_buffer.get_at(off); }
+
 private:
 	bool m_success{ false };
 
