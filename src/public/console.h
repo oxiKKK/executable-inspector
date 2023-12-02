@@ -11,7 +11,7 @@
 #define CONSOLE_H
 #pragma once
 
-#ifdef PLATFORM_WIN
+#ifdef PLAT_WIN
 #undef ERROR // windows crap
 #endif
 

@@ -6,6 +6,7 @@ find_package(OpenGL REQUIRED)
 include_directories(${OPENGL_INCLUDE_DIRS})
 
 include(cmake/DetectCompiler.cmake)
+include(cmake/DetectArchitecture.cmake)
 
 if (IS_GCC)
 	# sorry... what? xd
@@ -52,15 +53,6 @@ message("Build type: ${BUILD_TYPE}")
 # define debug/ndebug macros
 add_compile_definitions($<$<CONFIG:Release>:NDEBUG>)
 add_compile_definitions($<$<CONFIG:Debug>:_DEBUG>)
-
-# select compiler
-if (IS_MSVC)
-	add_compile_definitions(COMPILER_MSVC)
-	add_compile_definitions(PLATFORM_WIN)
-elseif (IS_GCC)
-	add_compile_definitions(COMPILER_GCC)
-	add_compile_definitions(PLATFORM_LINUX)
-endif()
 
 # output directories
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${BINARY_PATH}) # static library

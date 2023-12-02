@@ -78,7 +78,7 @@ IFileProcessor* CProcessorManager::processor_factory(const std::filesystem::path
 	}
 
 	std::filesystem::path full_library_path = processor_lib;
-#ifdef PLATFORM_WIN
+#ifdef PLAT_WIN
 	full_library_path.replace_extension(".dll");
 #else
 	full_library_path = "./" + full_library_path.string();
@@ -131,7 +131,7 @@ void CProcessorManager::assign_processor_fo_filenames(const std::vector<std::str
 	for (auto& ext : extensions)
 	{
 		std::string processor_library_name = processor;
-#ifdef PLATFORM_LINUX
+#ifdef PLAT_LINUX
 		// on linux, our dynamic libraries are prefixed with "lib"
 		processor_library_name = "lib" + processor_library_name;
 #endif

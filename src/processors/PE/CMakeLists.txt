@@ -1,5 +1,6 @@
 set(SOURCES
 	PE_processor.cc
+	dos_header.cc
 )
 
 # Create the target.

@@ -26,7 +26,7 @@ int32_t CApplication::run()
 	}
 
 	// create library loader
-#ifdef PLATFORM_WIN
+#ifdef PLAT_WIN
 	m_library_loader = std::make_unique<CLibraryLoaderWin32>();
 #else
 	m_library_loader = std::make_unique<CLibraryLoaderLinux>();

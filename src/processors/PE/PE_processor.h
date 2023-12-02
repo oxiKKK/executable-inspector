@@ -11,6 +11,10 @@
 #define PE_PROCESSOR_H
 #pragma once
 
+#include "win32/minwindef.h"
+
+#include "collected_data.h"
+
 class CPEProcessor : public IFileProcessor
 {
 public:
@@ -19,6 +23,9 @@ public:
 	virtual bool process_file(const std::filesystem::path& filepath, EProcessOptions options = PROCESS_NONE);
 
 	virtual void render_gui();
+
+private:
+	bool process_dos_hdr();
 
 private:
 	std::unique_ptr<ProcessedFileReader> m_reader{};

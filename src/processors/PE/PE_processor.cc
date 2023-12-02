@@ -7,6 +7,8 @@
 *	included in project root directory.
 ****/
 
+#include "precompiled.h"
+
 CPEProcessor g_processor;
 
 extern "C" EXPORT void* get_processor_factory()
@@ -17,6 +19,12 @@ extern "C" EXPORT void* get_processor_factory()
 bool CPEProcessor::process_file(const std::filesystem::path& filepath, EProcessOptions options)
 {
 	m_reader = std::make_unique<ProcessedFileReader>(filepath);
+
+	if (!process_dos_hdr())
+	{
+		con::error("couldn't process DOS header");
+		return false;
+	}
 
 	return true;
 }
