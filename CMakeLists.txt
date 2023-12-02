@@ -5,10 +5,6 @@ project(executable-inspector CXX C)
 find_package(OpenGL REQUIRED)
 include_directories(${OPENGL_INCLUDE_DIRS})
 
-# fmt
-find_package(fmt REQUIRED)
-link_libraries(fmt::fmt)
-
 include(cmake/DetectCompiler.cmake)
 
 # commonly used paths
@@ -88,6 +84,7 @@ add_subdirectory(src/app)
 add_subdirectory(src/thirdparty/glfw)
 add_subdirectory(src/thirdparty/imgui)
 add_subdirectory(src/thirdparty/soil)
+add_subdirectory(src/thirdparty/fmt)
 add_subdirectory(src/processors/elf)
 
 # install targets
