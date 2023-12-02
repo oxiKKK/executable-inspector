@@ -25,9 +25,15 @@ public:
 
 private:
 	bool process_dos_hdr();
+	bool process_dos_magic(uint16_t magic);
+	bool process_dos_signature();	 // IMAGE_DOS_SIGNATURE
+	bool process_os2_signature();	 // IMAGE_OS2_SIGNATURE
+	bool process_vxd_signature();	 // IMAGE_VXD_SIGNATURE
 
 private:
 	std::unique_ptr<ProcessedFileReader> m_reader{};
+
+	collected_data_t m_data{};
 };
 
 extern CPEProcessor g_processor;

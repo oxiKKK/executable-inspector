@@ -23,6 +23,7 @@
 #include <public/interface/processor_manager_interface.h>
 #include <public/interface/library_loader_interface.h>
 #include <public/bytebuffer.h>
+#include <public/aliased_value.h>
 #include <public/processors/processed_file_reader.h>
 
 // glfw
