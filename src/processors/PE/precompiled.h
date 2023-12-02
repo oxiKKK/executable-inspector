@@ -33,6 +33,10 @@
 #include <imgui/backends/imgui_impl_glfw.h>
 #include <imgui/backends/imgui_impl_opengl3.h>
 
+// win32
+#include "win32/minwindef.h"
+#include "win32/ntimage.h"
+
 // project
 #include "PE_processor.h"
 

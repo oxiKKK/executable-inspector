@@ -1,9 +1,18 @@
+/***
+*	executable-inspector developed by oxiKKK
+*
+*	Copyright (c) 2022-present, oxiKKK
+*
+*	For licensing information, see the "LICENSE" file
+*	included in project root directory.
+****/
+
 #ifndef WIN32_TYPES_H
 #define WIN32_TYPES_H
 #pragma once
 
 //
-// taken from minwindef.h
+// taken from minwindef.h and wtypesbase.h
 //
 
 #ifndef COMPILER_MSVC
@@ -22,6 +31,18 @@ typedef int                 BOOL;
 typedef unsigned char       BYTE;
 typedef unsigned short      WORD;
 typedef float               FLOAT;
+
+typedef char 				CHAR;
+typedef unsigned char 		UCHAR;
+typedef short 				SHORT;
+typedef unsigned short 		USHORT;
+typedef long 				LONG;
+typedef DWORD 				ULONG;
+typedef double 				DOUBLE;
+typedef long long 			LONGLONG;
+typedef unsigned long long 	ULONGLONG;
+typedef LONGLONG 			*PLONGLONG;
+typedef ULONGLONG *			PULONGLONG;
 
 typedef FLOAT               *PFLOAT;
 typedef BOOL near           *PBOOL;

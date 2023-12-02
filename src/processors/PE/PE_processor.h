@@ -11,7 +11,6 @@
 #define PE_PROCESSOR_H
 #pragma once
 
-#include "win32/minwindef.h"
 
 #include "collected_data.h"
 
