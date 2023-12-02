@@ -17,6 +17,7 @@ target_link_libraries(elfprocessor PRIVATE
 	glfw
 	imgui
 	soil
+	processor-utils
 )
 
 target_precompile_headers(elfprocessor PRIVATE

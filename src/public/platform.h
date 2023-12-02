@@ -62,4 +62,7 @@ using namespace std::chrono_literals;
 
 #include "custom_format.h"
 
+// ubiquitous
+#include "console.h"
+
 #endif // PLATFORM_H

@@ -16,7 +16,9 @@ extern "C" EXPORT void* get_processor_factory()
 
 bool CPEProcessor::process_file(const std::filesystem::path& filepath, EProcessOptions options)
 {
-	return false;
+	m_reader = std::make_unique<ProcessedFileReader>(filepath);
+
+	return true;
 }
 
 void CPEProcessor::render_gui()

@@ -2,8 +2,8 @@ set(SOURCES
 	main.cc
 	application.cc
 	glfw_window.cc
-	processor_manager.cc
-	process_result.cc
+	processing/processor_manager.cc
+	processing/process_result.cc
 	gui/gui.cc
 )
 

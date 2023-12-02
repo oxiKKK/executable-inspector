@@ -19,6 +19,9 @@ public:
 	virtual bool process_file(const std::filesystem::path& filepath, EProcessOptions options = PROCESS_NONE);
 
 	virtual void render_gui();
+
+private:
+	std::unique_ptr<ProcessedFileReader> m_reader{};
 };
 
 extern CPEProcessor g_processor;

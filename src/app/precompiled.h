@@ -36,8 +36,8 @@
 #include "library_loader/library_loader_win32.h"
 
 // project
-#include "processor_manager.h"
-#include "console.h"
+#include "processing/processor_manager.h"
+#include "processing/process_result.h"
 #include "gui/gui.h"
 #include "glfw_window.h"
 #include "application.h"
